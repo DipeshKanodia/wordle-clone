@@ -1,4 +1,5 @@
-import './App.css';
+import './index.css';
+import Wordle from './components/Wordle.js'
 import { useState, useEffect } from 'react';
 
 function App() {
@@ -8,16 +9,15 @@ function App() {
     fetch('./words.json')
       .then(res => res.json())
       .then(data => {
-        // random int between 0 & 14
         var id = Math.floor(Math.random()*data.words.length)
         setWord(data.words[id]);
       })
-  }, [])
+  }, [setWord])
   
   return (
     <div className="App">
-      {/* <button onClick={readJsonFile}>Read JSON File</button> */}
-      {word && <h1>word is: {word}</h1>}
+      <h1>Wordle (Lingo)</h1>
+      {word && <Wordle solution={word} />}
     </div>
   );
 }
